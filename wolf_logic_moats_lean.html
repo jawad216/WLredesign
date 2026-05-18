@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moats — Wolf Logic</title>
+<meta name="description" content="Four things our competitors can't easily replicate. What makes Wolf Logic different.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #faf8f4;
+    --ink: #1a1916;
+    --ink-2: #4a4844;
+    --ink-3: #8a8780;
+    --blue: #2d5be3;
+    --rule: #e2dfd8;
+    --serif: 'Fraunces', Georgia, serif;
+    --sans: 'Instrument Sans', sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+  nav { position: sticky; top: 0; z-index: 100; background: var(--bg); border-bottom: 1px solid var(--rule); padding: 0 48px; height: 60px; display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo { font-family: var(--serif); font-size: 18px; font-weight: 500; color: var(--ink); text-decoration: none; letter-spacing: -0.02em; }
+  .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+  .nav-links a { font-size: 13px; color: var(--ink-2); text-decoration: none; transition: color 0.15s; }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-cta { font-size: 13px !important; font-weight: 500; color: var(--bg) !important; background: var(--ink); padding: 8px 18px; border-radius: 4px; text-decoration: none !important; }
+  .nav-cta:hover { background: var(--blue) !important; }
+
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 48px; }
+  section { padding: 96px 0; border-bottom: 1px solid var(--rule); }
+
+  .eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 24px; display: block; }
+
+  .btn-primary { font-size: 14px; font-weight: 500; color: var(--bg); background: var(--ink); padding: 12px 24px; border-radius: 4px; text-decoration: none; transition: background 0.15s; display: inline-block; }
+  .btn-primary:hover { background: var(--blue); }
+  .btn-ghost { font-size: 14px; color: var(--ink-2); text-decoration: none; border-bottom: 1px solid var(--rule); padding-bottom: 2px; }
+  .btn-ghost:hover { color: var(--ink); }
+  .hero-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+
+  /* HERO */
+  #hero { padding: 120px 0 96px; }
+  #hero h1 { font-family: var(--serif); font-size: clamp(36px, 5vw, 64px); font-weight: 300; line-height: 1.1; letter-spacing: -0.03em; max-width: 760px; margin-bottom: 28px; }
+  #hero h1 em { font-style: italic; color: var(--blue); }
+  .hero-sub { font-size: 17px; color: var(--ink-2); max-width: 520px; margin-bottom: 40px; line-height: 1.5; }
+
+  /* MOAT NAV */
+  #moat-nav { padding: 32px 0; }
+  .moat-nav-inner { display: flex; gap: 32px; flex-wrap: wrap; }
+  .moat-nav-inner a { font-size: 13px; color: var(--ink-3); text-decoration: none; padding: 8px 0; border-bottom: 1px solid transparent; transition: color 0.15s, border-color 0.15s; }
+  .moat-nav-inner a:hover { color: var(--ink); border-color: var(--ink); }
+
+  /* MOAT SECTIONS */
+  .moat-section { display: grid; grid-template-columns: 280px 1fr; gap: 80px; align-items: start; }
+  .moat-label { position: sticky; top: 80px; }
+  .moat-num { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; color: var(--ink-3); margin-bottom: 12px; display: block; }
+  .moat-tags { display: flex; flex-direction: column; gap: 6px; margin-top: 20px; }
+  .moat-tag { font-size: 11px; color: var(--ink-3); }
+  .moat-body h2 { font-family: var(--serif); font-size: clamp(24px, 3vw, 40px); font-weight: 300; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 20px; }
+  .moat-body h2 em { font-style: italic; }
+  .moat-body p { font-size: 15px; color: var(--ink-2); line-height: 1.7; max-width: 560px; margin-bottom: 16px; }
+  .moat-body p:last-of-type { margin-bottom: 24px; }
+  .moat-body a { font-size: 13px; color: var(--blue); text-decoration: none; }
+  .moat-body a:hover { text-decoration: underline; }
+  .moat-callout { border-left: 2px solid var(--blue); padding: 16px 24px; margin: 24px 0; max-width: 560px; }
+  .moat-callout p { font-family: var(--serif); font-size: 18px; font-weight: 300; font-style: italic; color: var(--ink); margin-bottom: 0; }
+
+  /* SUMMARY */
+  #summary h2 { font-family: var(--serif); font-size: clamp(24px, 3vw, 40px); font-weight: 300; letter-spacing: -0.02em; margin-bottom: 40px; }
+  #summary h2 em { font-style: italic; }
+  .summary-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-bottom: 40px; }
+  .summary-item { background: var(--bg); padding: 32px 28px; }
+  .summary-item h4 { font-family: var(--serif); font-size: 18px; font-weight: 400; margin-bottom: 8px; }
+  .summary-item p { font-size: 13px; color: var(--ink-3); line-height: 1.5; }
+
+  /* LIMITS */
+  #limits h2 { font-family: var(--serif); font-size: clamp(24px, 3vw, 40px); font-weight: 300; letter-spacing: -0.02em; margin-bottom: 40px; }
+  #limits h2 em { font-style: italic; }
+  .limits-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .limit-item { padding: 24px 28px; border: 1px solid var(--rule); border-radius: 4px; display: flex; gap: 16px; align-items: flex-start; }
+  .limit-x { font-size: 16px; color: var(--ink-3); flex-shrink: 0; margin-top: 2px; }
+  .limit-item strong { font-size: 14px; font-weight: 500; color: var(--ink); display: block; }
+
+  /* CTA */
+  #cta { border-bottom: none; }
+  #cta h2 { font-family: var(--serif); font-size: clamp(28px, 4vw, 52px); font-weight: 300; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 20px; max-width: 600px; }
+  #cta h2 em { font-style: italic; }
+  #cta p { font-size: 15px; color: var(--ink-2); max-width: 440px; margin-bottom: 40px; }
+
+  footer { border-top: 1px solid var(--rule); padding: 40px 0; }
+  .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; }
+  .footer-left { font-size: 13px; color: var(--ink-3); }
+  .footer-left strong { font-family: var(--serif); font-weight: 500; color: var(--ink); font-size: 15px; display: block; margin-bottom: 4px; }
+  .footer-links { display: flex; gap: 24px; list-style: none; }
+  .footer-links a { font-size: 13px; color: var(--ink-3); text-decoration: none; }
+  .footer-links a:hover { color: var(--ink); }
+
+  @media (max-width: 768px) {
+    nav { padding: 0 24px; }
+    .container { padding: 0 24px; }
+    section { padding: 64px 0; }
+    .moat-section { grid-template-columns: 1fr; gap: 32px; }
+    .moat-label { position: static; }
+    .summary-grid, .limits-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="wolf_logic_homepage_lean.html" class="nav-logo">Wolf Logic</a>
+  <ul class="nav-links">
+    <li><a href="wolf_logic_homepage_lean.html">Home</a></li>
+    <li><a href="wolf_logic_agents_lean.html">AI Agents</a></li>
+    <li><a href="#">Moats</a></li>
+    <li><a href="#">Case studies</a></li>
+    <li><a href="#cta" class="nav-cta">Book a call</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="container">
+    <span class="eyebrow">What makes Wolf Logic different</span>
+    <h1>Four things our competitors <em>can't easily replicate.</em></h1>
+    <p class="hero-sub">When you're choosing a partner to ship AI inside a regulated platform, the stakes are higher than choosing a generalist agency.</p>
+    <div class="moat-nav-inner" style="margin-top:0">
+      <a href="#moat-01">01 — Regulated AI</a>
+      <a href="#moat-02">02 — Engineering-led</a>
+      <a href="#moat-03">03 — Live-system surgery</a>
+      <a href="#moat-04">04 — Small &amp; AI-native</a>
+    </div>
+  </div>
+</section>
+
+<!-- MOAT 01 -->
+<section id="moat-01">
+  <div class="container">
+    <div class="moat-section">
+      <div class="moat-label">
+        <span class="moat-num">Moat 01</span>
+        <div class="moat-tags">
+          <span class="moat-tag">Regulated AI</span>
+          <span class="moat-tag">CQC compliance</span>
+          <span class="moat-tag">Multi-agent systems</span>
+        </div>
+      </div>
+      <div class="moat-body">
+        <h2>We've shipped production AI in a regulated environment. <em>Most haven't.</em></h2>
+        <p>Most agencies have built demos or internal tools. Very few have shipped production AI inside platforms subject to regulatory scrutiny — where a hallucination has consequences, where audit trails are non-negotiable.</p>
+        <div class="moat-callout">
+          <p>Production AI in a regulated environment is not a harder version of production AI. It's a different discipline.</p>
+        </div>
+        <p>CareDocs: multi-agent AI compliance framework running against live care records, monitoring against CQC Digital Social Care Records requirements. In production today, on customer data, in a regulated environment.</p>
+        <a href="#">Read the CareDocs case study →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MOAT 02 -->
+<section id="moat-02">
+  <div class="container">
+    <div class="moat-section">
+      <div class="moat-label">
+        <span class="moat-num">Moat 02</span>
+        <div class="moat-tags">
+          <span class="moat-tag">Engineering-led</span>
+          <span class="moat-tag">No handover</span>
+          <span class="moat-tag">No bait-and-switch</span>
+        </div>
+      </div>
+      <div class="moat-body">
+        <h2>The people who scope your work are <em>the people who build it.</em></h2>
+        <p>In larger consultancies, the engagement is sold by partners and delivered by graduates. Wolf Logic is structured differently — the engineers who lead our readiness reviews are the engineers in your codebase six months later.</p>
+        <div class="moat-callout">
+          <p>There is no handover from sales to delivery, because there is no separate sales function.</p>
+        </div>
+        <p>The scoping is more accurate. The timelines are more honest. The relationship that builds in the first conversation is the one that delivers the work.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MOAT 03 -->
+<section id="moat-03">
+  <div class="container">
+    <div class="moat-section">
+      <div class="moat-label">
+        <span class="moat-num">Moat 03</span>
+        <div class="moat-tags">
+          <span class="moat-tag">Live migration</span>
+          <span class="moat-tag">Zero downtime</span>
+          <span class="moat-tag">Legacy modernisation</span>
+        </div>
+      </div>
+      <div class="moat-body">
+        <h2>We modernise live platforms <em>without breaking them.</em></h2>
+        <p>Most established vertical SaaS platforms can't afford a greenfield rebuild. They need something most firms can't do: change the architecture of a running system without interrupting the business.</p>
+        <div class="moat-callout">
+          <p>If your platform is established and your customers depend on it, "rebuild it" is rarely the right answer.</p>
+        </div>
+        <p>CareDocs migrated from monorepo to service-oriented architecture — live, on a system serving care homes in real time, without downtime. We can give you a different answer.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MOAT 04 -->
+<section id="moat-04">
+  <div class="container">
+    <div class="moat-section">
+      <div class="moat-label">
+        <span class="moat-num">Moat 04</span>
+        <div class="moat-tags">
+          <span class="moat-tag">AI-native team</span>
+          <span class="moat-tag">Senior engineers</span>
+          <span class="moat-tag">No offshore</span>
+        </div>
+      </div>
+      <div class="moat-body">
+        <h2>Small by design. <em>Faster because of it.</em></h2>
+        <p>Adding people to an engineering project does not make it move faster. We're deliberately small — and we've invested heavily in AI-augmented engineering tooling. The same AI we ship for clients is embedded in how we work.</p>
+        <div class="moat-callout">
+          <p>A senior engineer with the right AI tooling now delivers more, at higher quality, in less time.</p>
+        </div>
+        <p>No offshore overflow, no hidden subcontractors, no London tower. The team you meet is the team you get.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUMMARY -->
+<section id="summary">
+  <div class="container">
+    <span class="eyebrow">Why this combination is rare</span>
+    <h2>Most firms have one of these. <em>Almost none have all four.</em></h2>
+    <div class="summary-grid">
+      <div class="summary-item">
+        <h4>Regulated AI</h4>
+        <p>Production AI in environments where hallucinations have consequences</p>
+      </div>
+      <div class="summary-item">
+        <h4>Engineering-led</h4>
+        <p>No sales-to-delivery handover — the people who scope it build it</p>
+      </div>
+      <div class="summary-item">
+        <h4>Live-system surgery</h4>
+        <p>Architectural change on running platforms without operational disruption</p>
+      </div>
+      <div class="summary-item">
+        <h4>Small &amp; AI-native</h4>
+        <p>Senior engineers compounding velocity through embedded AI tooling</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIMITS -->
+<section id="limits">
+  <div class="container">
+    <span class="eyebrow">Honest limits</span>
+    <h2>What we're <em>not.</em></h2>
+    <div class="limits-grid">
+      <div class="limit-item">
+        <span class="limit-x">✕</span>
+        <strong>The cheapest option</strong>
+      </div>
+      <div class="limit-item">
+        <span class="limit-x">✕</span>
+        <strong>A generalist agency</strong>
+      </div>
+      <div class="limit-item">
+        <span class="limit-x">✕</span>
+        <strong>A strategy consultancy</strong>
+      </div>
+      <div class="limit-item">
+        <span class="limit-x">✕</span>
+        <strong>Infinitely scalable</strong>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="container">
+    <span class="eyebrow">Ready to talk</span>
+    <h2>If this is <em>the kind of partner</em> you've been looking for —</h2>
+    <p>Thirty minutes. No slides, no pitch — a technical conversation about what you're trying to ship and whether we're the right people to ship it.</p>
+    <div class="hero-actions">
+      <a href="#" class="btn-primary">Book a 30-minute conversation →</a>
+      <a href="wolf_logic_agents_lean.html" class="btn-ghost">Start with a readiness review</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <strong>Wolf Logic</strong>
+        Production AI for regulated vertical SaaS · UK
+      </div>
+      <ul class="footer-links">
+        <li><a href="wolf_logic_homepage_lean.html">Home</a></li>
+        <li><a href="wolf_logic_agents_lean.html">AI Agents</a></li>
+        <li><a href="#">Moats</a></li>
+        <li><a href="#">Case studies</a></li>
+        <li><a href="#">Privacy</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

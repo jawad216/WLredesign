@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Agents — Wolf Logic</title>
+<meta name="description" content="Production AI agents for vertical SaaS platforms. Built and operated on Wolfpack.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #faf8f4;
+    --ink: #1a1916;
+    --ink-2: #4a4844;
+    --ink-3: #8a8780;
+    --blue: #2d5be3;
+    --rule: #e2dfd8;
+    --serif: 'Fraunces', Georgia, serif;
+    --sans: 'Instrument Sans', sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+  nav { position: sticky; top: 0; z-index: 100; background: var(--bg); border-bottom: 1px solid var(--rule); padding: 0 48px; height: 60px; display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo { font-family: var(--serif); font-size: 18px; font-weight: 500; color: var(--ink); text-decoration: none; letter-spacing: -0.02em; }
+  .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+  .nav-links a { font-size: 13px; color: var(--ink-2); text-decoration: none; transition: color 0.15s; }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-cta { font-size: 13px !important; font-weight: 500; color: var(--bg) !important; background: var(--ink); padding: 8px 18px; border-radius: 4px; text-decoration: none !important; transition: background 0.15s; }
+  .nav-cta:hover { background: var(--blue) !important; }
+
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 48px; }
+  section { padding: 96px 0; border-bottom: 1px solid var(--rule); }
+
+  .eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 24px; display: block; }
+
+  /* HERO */
+  #hero { padding: 120px 0 96px; }
+  #hero h1 { font-family: var(--serif); font-size: clamp(36px, 5vw, 64px); font-weight: 300; line-height: 1.1; letter-spacing: -0.03em; max-width: 760px; margin-bottom: 28px; }
+  #hero h1 em { font-style: italic; color: var(--blue); }
+  .hero-sub { font-size: 17px; color: var(--ink-2); max-width: 480px; margin-bottom: 40px; line-height: 1.5; }
+  .btn-primary { font-size: 14px; font-weight: 500; color: var(--bg); background: var(--ink); padding: 12px 24px; border-radius: 4px; text-decoration: none; transition: background 0.15s; display: inline-block; }
+  .btn-primary:hover { background: var(--blue); }
+  .btn-ghost { font-size: 14px; color: var(--ink-2); text-decoration: none; border-bottom: 1px solid var(--rule); padding-bottom: 2px; transition: color 0.15s; }
+  .btn-ghost:hover { color: var(--ink); }
+  .hero-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+
+  /* PROBLEM */
+  #problem h2 { font-family: var(--serif); font-size: clamp(24px, 3vw, 40px); font-weight: 300; letter-spacing: -0.02em; margin-bottom: 20px; max-width: 600px; }
+  #problem h2 em { font-style: italic; }
+  #problem p { font-size: 15px; color: var(--ink-2); max-width: 520px; line-height: 1.6; }
+
+  /* LAYERS */
+  #layers h2 { font-family: var(--serif); font-size: clamp(24px, 3vw, 40px); font-weight: 300; letter-spacing: -0.02em; margin-bottom: 56px; }
+  #layers h2 em { font-style: italic; }
+  .layers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+  .layer { background: var(--bg); padding: 40px 32px; }
+  .layer-num { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; color: var(--ink-3); margin-bottom: 16px; display: block; }
+  .layer h3 { font-family: var(--serif); font-size: 22px; font-weight: 400; letter-spacing: -0.01em; margin-bottom: 12px; }
+  .layer h3 em { font-style: italic; }
+  .layer p { font-size: 14px; color: var(--ink-2); line-height: 1.5; margin-bottom: 20px; }
+  .layer-examples { font-size: 12px; color: var(--ink-3); border-top: 1px solid var(--rule); padding-top: 16px; }
+
+  /* WOLFPACK */
+  #wolfpack { background: var(--ink); color: var(--bg); border-bottom: none; }
+  #wolfpack .eyebrow { color: rgba(255,255,255,0.4); }
+  #wolfpack h2 { font-family: var(--serif); font-size: clamp(24px, 3vw, 44px); font-weight: 300; letter-spacing: -0.02em; margin-bottom: 16px; max-width: 600px; }
+  #wolfpack h2 em { font-style: italic; color: #7da4f5; }
+  #wolfpack > .container > p { font-size: 15px; color: rgba(255,255,255,0.55); max-width: 520px; margin-bottom: 56px; }
+  .wp-features { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px 64px; margin-bottom: 56px; }
+  .wp-feature h4 { font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.9); margin-bottom: 6px; }
+  .wp-feature p { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.5; }
+  .wp-card { border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 32px; display: flex; gap: 48px; align-items: center; flex-wrap: wrap; }
+  .wp-tags { display: flex; flex-wrap: wrap; gap: 8px; flex: 1; min-width: 260px; }
+  .tag { font-size: 11px; font-weight: 500; letter-spacing: 0.06em; padding: 5px 10px; border-radius: 3px; background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.55); white-space: nowrap; }
+  .wp-actions { display: flex; flex-direction: column; gap: 12px; flex-shrink: 0; }
+  .btn-white { font-size: 13px; font-weight: 500; color: var(--ink); background: var(--bg); padding: 10px 20px; border-radius: 4px; text-decoration: none; transition: opacity 0.15s; white-space: nowrap; }
+  .btn-white:hover { opacity: 0.85; }
+  .btn-outline-white { font-size: 13px; color: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.2); padding: 10px 20px; border-radius: 4px; text-decoration: none; transition: border-color 0.15s; white-space: nowrap; }
+  .btn-outline-white:hover { border-color: rgba(255,255,255,0.5); color: #fff; }
+
+  /* PHASES */
+  #phases h2 { font-family: var(--serif); font-size: clamp(24px, 3vw, 40px); font-weight: 300; letter-spacing: -0.02em; margin-bottom: 56px; }
+  #phases h2 em { font-style: italic; }
+  .phases { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+  .phase { background: var(--bg); padding: 36px 28px; }
+  .phase-num { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; color: var(--ink-3); margin-bottom: 16px; }
+  .phase h3 { font-family: var(--serif); font-size: 20px; font-weight: 400; margin-bottom: 12px; }
+  .phase p { font-size: 13px; color: var(--ink-2); line-height: 1.5; margin-bottom: 16px; }
+  .phase-meta { font-size: 12px; color: var(--ink-3); border-top: 1px solid var(--rule); padding-top: 12px; }
+
+  /* PROOF */
+  #proof h2 { font-family: var(--serif); font-size: clamp(24px, 3vw, 40px); font-weight: 300; letter-spacing: -0.02em; margin-bottom: 40px; }
+  #proof h2 em { font-style: italic; }
+  .proof-card { border: 1px solid var(--rule); border-radius: 6px; padding: 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+  .proof-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+  .proof-tag { font-size: 11px; font-weight: 500; letter-spacing: 0.06em; padding: 4px 10px; border: 1px solid var(--rule); border-radius: 3px; color: var(--ink-3); }
+  .proof-card h3 { font-family: var(--serif); font-size: 26px; font-weight: 400; letter-spacing: -0.01em; line-height: 1.25; margin-bottom: 16px; }
+  .proof-card h3 em { font-style: italic; }
+  .proof-card p { font-size: 14px; color: var(--ink-2); line-height: 1.6; margin-bottom: 24px; }
+  .proof-card a { font-size: 13px; color: var(--blue); text-decoration: none; }
+  .proof-card a:hover { text-decoration: underline; }
+  .proof-stats { display: flex; flex-direction: column; gap: 32px; justify-content: center; }
+  .proof-stat-val { font-family: var(--serif); font-size: 40px; font-weight: 300; letter-spacing: -0.02em; line-height: 1; margin-bottom: 4px; }
+  .proof-stat-label { font-size: 13px; color: var(--ink-3); }
+
+  /* LIMITS */
+  #limits h2 { font-family: var(--serif); font-size: clamp(24px, 3vw, 40px); font-weight: 300; letter-spacing: -0.02em; margin-bottom: 40px; }
+  #limits h2 em { font-style: italic; }
+  .limits-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .limit-item { padding: 24px 28px; border: 1px solid var(--rule); border-radius: 4px; display: flex; gap: 16px; align-items: flex-start; }
+  .limit-x { font-size: 16px; color: var(--ink-3); flex-shrink: 0; margin-top: 2px; }
+  .limit-item strong { font-size: 14px; font-weight: 500; color: var(--ink); display: block; }
+
+  /* CTA */
+  #cta { border-bottom: none; }
+  #cta h2 { font-family: var(--serif); font-size: clamp(28px, 4vw, 52px); font-weight: 300; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 20px; max-width: 600px; }
+  #cta h2 em { font-style: italic; }
+  #cta p { font-size: 15px; color: var(--ink-2); max-width: 440px; margin-bottom: 40px; }
+
+  footer { border-top: 1px solid var(--rule); padding: 40px 0; }
+  .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; }
+  .footer-left { font-size: 13px; color: var(--ink-3); }
+  .footer-left strong { font-family: var(--serif); font-weight: 500; color: var(--ink); font-size: 15px; display: block; margin-bottom: 4px; }
+  .footer-links { display: flex; gap: 24px; list-style: none; }
+  .footer-links a { font-size: 13px; color: var(--ink-3); text-decoration: none; }
+  .footer-links a:hover { color: var(--ink); }
+
+  @media (max-width: 768px) {
+    nav { padding: 0 24px; }
+    .container { padding: 0 24px; }
+    section { padding: 64px 0; }
+    .layers-grid, .phases, .wp-features, .limits-grid, .proof-card { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="wolf_logic_homepage_lean.html" class="nav-logo">Wolf Logic</a>
+  <ul class="nav-links">
+    <li><a href="wolf_logic_homepage_lean.html">Home</a></li>
+    <li><a href="#">AI Agents</a></li>
+    <li><a href="wolf_logic_moats_lean.html">Moats</a></li>
+    <li><a href="#">Case studies</a></li>
+    <li><a href="#cta" class="nav-cta">Book a call</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="container">
+    <span class="eyebrow">AI Agents · Production-grade · Built and operated</span>
+    <h1>The AI agents your customers are asking for, <em>shipped to production.</em></h1>
+    <p class="hero-sub">Built on Wolfpack, our own agentic platform. Integrated into your stack. Handed over to your team.</p>
+    <div class="hero-actions">
+      <a href="#cta" class="btn-primary">Book a 30-minute conversation →</a>
+      <a href="#phases" class="btn-ghost">See how an engagement runs</a>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section id="problem">
+  <div class="container">
+    <span class="eyebrow">The problem you're trying to solve</span>
+    <h2>Your customers want AI. <em>Most agencies want to demo it.</em></h2>
+    <p>What an established platform actually needs: agents that work in production, guardrails designed in from the start, audit trails that survive regulatory scrutiny, and a handover your team can own.</p>
+  </div>
+</section>
+
+<!-- LAYERS -->
+<section id="layers">
+  <div class="container">
+    <span class="eyebrow">What we build</span>
+    <h2>Three layers of agent work. <em>One coherent stack.</em></h2>
+    <div class="layers-grid">
+      <div class="layer">
+        <span class="layer-num">Layer 01</span>
+        <h3>Single-purpose <em>agents</em></h3>
+        <p>One agent that does one thing exceptionally well — triage, extraction, monitoring, summarisation.</p>
+        <div class="layer-examples">Document intelligence · ticket triage · anomaly detection</div>
+      </div>
+      <div class="layer">
+        <span class="layer-num">Layer 02</span>
+        <h3>Multi-agent <em>systems</em></h3>
+        <p>Networks of agents with the right boundaries, escalation paths, and human-in-the-loop checkpoints.</p>
+        <div class="layer-examples">Compliance frameworks · multi-stage workflows · governed delegation</div>
+      </div>
+      <div class="layer">
+        <span class="layer-num">Layer 03</span>
+        <h3>The platform <em>underneath</em></h3>
+        <p>Agents need somewhere to live, run procedures, hold state, and log decisions. That's Wolfpack.</p>
+        <div class="layer-examples">Agentic work platform · procedures · cases · knowledge integration</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WOLFPACK -->
+<section id="wolfpack">
+  <div class="container">
+    <span class="eyebrow">Our platform</span>
+    <h2>Wolfpack — <em>where agents do real work.</em></h2>
+    <p>An agentic work platform where AI agents are first-class citizens — not chat windows bolted onto a project management tool.</p>
+    <div class="wp-features">
+      <div class="wp-feature">
+        <h4>Build with any model</h4>
+        <p>Claude, Gemini, DeepSeek, OpenAI, or your own. Swap without rewriting agents.</p>
+      </div>
+      <div class="wp-feature">
+        <h4>Procedures, not prompts</h4>
+        <p>Named, versioned, testable procedures. Every step logged. Audit-ready by design.</p>
+      </div>
+      <div class="wp-feature">
+        <h4>Shared workplace</h4>
+        <p>Work items, cases, knowledge, threaded context. Humans and agents on the same surface.</p>
+      </div>
+      <div class="wp-feature">
+        <h4>Governed by design</h4>
+        <p>Every action logged, attributable, reversible. Permissions explicit. Approval workflows first-class.</p>
+      </div>
+    </div>
+    <div class="wp-card">
+      <div class="wp-tags">
+        <span class="tag">agent-scaffolding</span>
+        <span class="tag">evaluation-harness</span>
+        <span class="tag">review-pipeline</span>
+        <span class="tag">deploy-rollback</span>
+        <span class="tag">observability</span>
+        <span class="tag">cost-ceilings</span>
+        <span class="tag">model-switch-ready</span>
+      </div>
+      <div class="wp-actions">
+        <a href="#" class="btn-white">See Wolfpack →</a>
+        <a href="#" class="btn-outline-white">Request a demo</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHASES -->
+<section id="phases">
+  <div class="container">
+    <span class="eyebrow">How an engagement runs</span>
+    <h2>From "we should ship AI" <em>to production agents.</em></h2>
+    <div class="phases">
+      <div class="phase">
+        <div class="phase-num">Phase 01</div>
+        <h3>Readiness review</h3>
+        <p>We audit your platform, data, and compliance posture. You leave with build-ready specifications.</p>
+        <div class="phase-meta">2 weeks · £12,500 fixed</div>
+      </div>
+      <div class="phase">
+        <div class="phase-num">Phase 02</div>
+        <h3>Build</h3>
+        <p>Agents, evaluation suites, guardrails, platform integration. Engineering led by the same people who scoped it.</p>
+        <div class="phase-meta">8–16 weeks · Scoped from review</div>
+      </div>
+      <div class="phase">
+        <div class="phase-num">Phase 03</div>
+        <h3>Deploy</h3>
+        <p>Shipped to production with documentation, runbooks, and handover sessions.</p>
+        <div class="phase-meta">2–4 weeks</div>
+      </div>
+      <div class="phase">
+        <div class="phase-num">Phase 04</div>
+        <h3>Operate</h3>
+        <p>Optional retainer for drift monitoring, model swaps, and agent extensions. Or your team takes it over.</p>
+        <div class="phase-meta">Monthly · From £2,500</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF -->
+<section id="proof">
+  <div class="container">
+    <span class="eyebrow">Proof</span>
+    <h2>CareDocs — <em>multi-agent compliance, in production.</em></h2>
+    <div class="proof-card">
+      <div>
+        <div class="proof-tags">
+          <span class="proof-tag">UK Care SaaS</span>
+          <span class="proof-tag">CQC / DSCR</span>
+          <span class="proof-tag">Multi-agent</span>
+          <span class="proof-tag">Live</span>
+        </div>
+        <h3>AI compliance monitoring running against <em>live care records.</em></h3>
+        <p>Continuously monitors against CQC Digital Social Care Records requirements. Mixed-model architecture — compliance monitoring, document intelligence, and care worker guidance agents — each with its own evaluation suite and audit trail.</p>
+        <a href="#">Read the full case study →</a>
+      </div>
+      <div class="proof-stats">
+        <div>
+          <div class="proof-stat-val">12+</div>
+          <div class="proof-stat-label">Months in production</div>
+        </div>
+        <div>
+          <div class="proof-stat-val">3</div>
+          <div class="proof-stat-label">Agent types in production</div>
+        </div>
+        <div>
+          <div class="proof-stat-val">0</div>
+          <div class="proof-stat-label">Autonomous decisions without human checkpoint</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIMITS -->
+<section id="limits">
+  <div class="container">
+    <span class="eyebrow">What we won't build</span>
+    <h2>What we're <em>not.</em></h2>
+    <div class="limits-grid">
+      <div class="limit-item">
+        <span class="limit-x">✕</span>
+        <strong>Autonomous agents with no human in the loop</strong>
+      </div>
+      <div class="limit-item">
+        <span class="limit-x">✕</span>
+        <strong>Customer-facing chatbots without guardrails</strong>
+      </div>
+      <div class="limit-item">
+        <span class="limit-x">✕</span>
+        <strong>AI strategy decks for your board</strong>
+      </div>
+      <div class="limit-item">
+        <span class="limit-x">✕</span>
+        <strong>Replacement-grade AI for safety-critical decisions</strong>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="container">
+    <span class="eyebrow">Ready to ship</span>
+    <h2>If you're ready to ship <em>real agents —</em></h2>
+    <p>Thirty minutes. No slides, no pitch — a technical conversation about what your platform needs and whether we're the right team.</p>
+    <div class="hero-actions">
+      <a href="#" class="btn-primary">Book a 30-minute conversation →</a>
+      <a href="#phases" class="btn-ghost">Start with a readiness review</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <strong>Wolf Logic</strong>
+        Production AI for regulated vertical SaaS · UK
+      </div>
+      <ul class="footer-links">
+        <li><a href="wolf_logic_homepage_lean.html">Home</a></li>
+        <li><a href="#">AI Agents</a></li>
+        <li><a href="wolf_logic_moats_lean.html">Moats</a></li>
+        <li><a href="#">Case studies</a></li>
+        <li><a href="#">Privacy</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wolf Logic — We rebuilt ourselves around AI. Now we rebuild you.</title>
+<meta name="description" content="AI transformation partner. 20 years shipping software. 2 years rebuilding around AI.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #faf8f4;
+    --ink: #1a1916;
+    --ink-2: #4a4844;
+    --ink-3: #8a8780;
+    --blue: #2d5be3;
+    --blue-light: #e8eefb;
+    --rule: #e2dfd8;
+    --serif: 'Fraunces', Georgia, serif;
+    --sans: 'Instrument Sans', sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--bg);
+    border-bottom: 1px solid var(--rule);
+    padding: 0 48px;
+    height: 60px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+  .nav-links {
+    display: flex; align-items: center; gap: 32px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 13px;
+    color: var(--ink-2);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    transition: color 0.15s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-cta {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--bg) !important;
+    background: var(--ink);
+    padding: 8px 18px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background 0.15s;
+  }
+  .nav-cta:hover { background: var(--blue) !important; }
+
+  /* LAYOUT */
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 48px; }
+  section { padding: 96px 0; border-bottom: 1px solid var(--rule); }
+  section:last-of-type { border-bottom: none; }
+
+  /* EYEBROW */
+  .eyebrow {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-bottom: 24px;
+    display: block;
+  }
+
+  /* HERO */
+  #hero {
+    padding: 120px 0 96px;
+    border-bottom: 1px solid var(--rule);
+  }
+  #hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(40px, 6vw, 72px);
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    max-width: 800px;
+    margin-bottom: 32px;
+  }
+  #hero h1 em {
+    font-style: italic;
+    color: var(--blue);
+  }
+  .hero-sub {
+    font-size: 18px;
+    color: var(--ink-2);
+    max-width: 480px;
+    margin-bottom: 40px;
+    line-height: 1.5;
+  }
+  .hero-actions {
+    display: flex; gap: 16px; align-items: center; flex-wrap: wrap;
+  }
+  .btn-primary {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--bg);
+    background: var(--ink);
+    padding: 12px 24px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background 0.15s;
+  }
+  .btn-primary:hover { background: var(--blue); }
+  .btn-secondary {
+    font-size: 14px;
+    color: var(--ink-2);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 2px;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .btn-secondary:hover { color: var(--ink); border-color: var(--ink); }
+
+  /* TRUST BAR */
+  #trust {
+    padding: 40px 0;
+    border-bottom: 1px solid var(--rule);
+    overflow: hidden;
+  }
+  .trust-scroll {
+    display: flex; gap: 64px; align-items: center;
+    animation: scroll-logos 30s linear infinite;
+    width: max-content;
+  }
+  .trust-scroll img {
+    height: 28px;
+    opacity: 0.4;
+    filter: grayscale(1);
+    transition: opacity 0.2s;
+  }
+  .trust-scroll img:hover { opacity: 0.7; }
+  @keyframes scroll-logos {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* THESIS */
+  #thesis {
+    padding: 96px 0;
+  }
+  #thesis h2 {
+    font-family: var(--serif);
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 300;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    max-width: 640px;
+    margin-bottom: 20px;
+  }
+  #thesis h2 em { font-style: italic; }
+  #thesis p {
+    font-size: 16px;
+    color: var(--ink-2);
+    max-width: 480px;
+  }
+
+  /* PILLARS */
+  #pillars h2 {
+    font-family: var(--serif);
+    font-size: clamp(24px, 3vw, 36px);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    margin-bottom: 56px;
+  }
+  #pillars h2 em { font-style: italic; }
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+  }
+  .pillar {
+    background: var(--bg);
+    padding: 40px 36px;
+    display: flex; flex-direction: column; gap: 16px;
+  }
+  .pillar-num {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: var(--ink-3);
+  }
+  .pillar h3 {
+    font-family: var(--serif);
+    font-size: 24px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+  .pillar-desc {
+    font-size: 14px;
+    color: var(--ink-2);
+    line-height: 1.5;
+    flex: 1;
+  }
+  .pillar-meta {
+    font-size: 12px;
+    color: var(--ink-3);
+    border-top: 1px solid var(--rule);
+    padding-top: 16px;
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .pillar-price {
+    font-weight: 500;
+    color: var(--ink);
+    font-size: 13px;
+  }
+  .pillar-link {
+    font-size: 13px;
+    color: var(--blue);
+    text-decoration: none;
+    margin-top: 8px;
+    display: inline-block;
+  }
+  .pillar-link:hover { text-decoration: underline; }
+
+  /* AGENTS */
+  #agents {
+    background: var(--ink);
+    color: var(--bg);
+    padding: 96px 0;
+    border-bottom: none;
+  }
+  #agents .eyebrow { color: rgba(255,255,255,0.4); }
+  #agents h2 {
+    font-family: var(--serif);
+    font-size: clamp(24px, 3vw, 40px);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    margin-bottom: 56px;
+    max-width: 560px;
+  }
+  #agents h2 em { font-style: italic; color: #7da4f5; }
+  .agents-features {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px 64px;
+    margin-bottom: 56px;
+  }
+  .agent-feature h4 {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: rgba(255,255,255,0.9);
+  }
+  .agent-feature p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.5;
+  }
+  .wolfpack-card {
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px;
+    padding: 32px;
+    display: flex; gap: 64px; align-items: flex-start;
+    flex-wrap: wrap;
+  }
+  .wolfpack-tags {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    flex: 1; min-width: 280px;
+  }
+  .tag {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    padding: 5px 10px;
+    border-radius: 3px;
+    background: rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.6);
+    white-space: nowrap;
+  }
+  .wolfpack-pricing {
+    display: flex; gap: 40px; align-items: flex-end;
+    flex-shrink: 0;
+  }
+  .price-block { display: flex; flex-direction: column; gap: 4px; }
+  .price-label { font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 0.08em; text-transform: uppercase; }
+  .price-val { font-family: var(--serif); font-size: 24px; font-weight: 300; color: rgba(255,255,255,0.9); }
+
+  /* REVIEW */
+  #review {
+    padding: 96px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  #review h2 {
+    font-family: var(--serif);
+    font-size: clamp(24px, 3vw, 40px);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+    max-width: 560px;
+  }
+  #review h2 em { font-style: italic; }
+  #review > .container > p {
+    color: var(--ink-2);
+    font-size: 15px;
+    max-width: 400px;
+    margin-bottom: 48px;
+  }
+  .review-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    margin-bottom: 40px;
+  }
+  .stat {
+    background: var(--bg);
+    padding: 32px 28px;
+  }
+  .stat-val {
+    font-family: var(--serif);
+    font-size: 36px;
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    margin-bottom: 4px;
+  }
+  .stat-label { font-size: 13px; color: var(--ink-3); }
+
+  /* HOW WE WORK */
+  #how h2 {
+    font-family: var(--serif);
+    font-size: clamp(24px, 3vw, 40px);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    margin-bottom: 56px;
+    max-width: 560px;
+  }
+  #how h2 em { font-style: italic; }
+  .phases {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+  }
+  .phase {
+    background: var(--bg);
+    padding: 36px 28px;
+  }
+  .phase-num {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: var(--ink-3);
+    margin-bottom: 16px;
+  }
+  .phase h3 {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 12px;
+  }
+  .phase p {
+    font-size: 13px;
+    color: var(--ink-2);
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+  .phase-meta {
+    font-size: 12px;
+    color: var(--ink-3);
+    border-top: 1px solid var(--rule);
+    padding-top: 12px;
+  }
+
+  /* CASES */
+  #cases h2 {
+    font-family: var(--serif);
+    font-size: clamp(24px, 3vw, 40px);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    margin-bottom: 48px;
+    display: flex; align-items: baseline; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+  }
+  #cases h2 em { font-style: italic; }
+  #cases h2 a {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--blue);
+    text-decoration: none;
+    letter-spacing: 0;
+  }
+  .cases-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+  }
+  .case {
+    background: var(--bg);
+    padding: 40px 36px;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.15s;
+    display: block;
+  }
+  .case:hover { background: #f4f1eb; }
+  .case-client {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .case h3 {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+    margin-bottom: 12px;
+  }
+  .case h3 em { font-style: italic; }
+  .case-tags {
+    display: flex; gap: 8px; flex-wrap: wrap; margin-top: 24px;
+  }
+  .case-tag {
+    font-size: 11px;
+    padding: 4px 10px;
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    color: var(--ink-3);
+  }
+
+  /* LIMITS */
+  #limits h2 {
+    font-family: var(--serif);
+    font-size: clamp(24px, 3vw, 40px);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    margin-bottom: 40px;
+  }
+  #limits h2 em { font-style: italic; }
+  .limits-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .limit-item {
+    padding: 24px 28px;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    display: flex; gap: 16px; align-items: flex-start;
+  }
+  .limit-x {
+    font-size: 16px;
+    color: var(--ink-3);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .limit-item strong {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink);
+    display: block;
+  }
+
+  /* CTA */
+  #cta {
+    padding: 96px 0;
+    border-bottom: none;
+  }
+  #cta h2 {
+    font-family: var(--serif);
+    font-size: clamp(28px, 4vw, 52px);
+    font-weight: 300;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: 32px;
+    max-width: 640px;
+  }
+  #cta h2 em { font-style: italic; }
+  #cta p {
+    font-size: 15px;
+    color: var(--ink-2);
+    max-width: 400px;
+    margin-bottom: 40px;
+  }
+  #cta .hero-actions { margin-bottom: 0; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 40px 0;
+  }
+  .footer-inner {
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px;
+  }
+  .footer-left {
+    font-size: 13px;
+    color: var(--ink-3);
+  }
+  .footer-left strong {
+    font-family: var(--serif);
+    font-weight: 500;
+    color: var(--ink);
+    font-size: 15px;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .footer-links {
+    display: flex; gap: 24px; list-style: none;
+  }
+  .footer-links a {
+    font-size: 13px;
+    color: var(--ink-3);
+    text-decoration: none;
+  }
+  .footer-links a:hover { color: var(--ink); }
+
+  @media (max-width: 768px) {
+    nav { padding: 0 24px; }
+    .container { padding: 0 24px; }
+    section { padding: 64px 0; }
+    .pillars-grid, .phases, .review-stats, .agents-features, .limits-grid, .cases-grid { grid-template-columns: 1fr; }
+    #hero h1 { font-size: 36px; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">Wolf Logic</a>
+  <ul class="nav-links">
+    <li><a href="#pillars">Transformation</a></li>
+    <li><a href="#agents">Agents</a></li>
+    <li><a href="#how">How we work</a></li>
+    <li><a href="#cases">Work</a></li>
+    <li><a href="#review" class="nav-cta">Book a call</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="container">
+    <span class="eyebrow">AI transformation partner · UK · 20 years shipping software</span>
+    <h1>We rebuilt ourselves<br>around AI. <em>Now we<br>rebuild you.</em></h1>
+    <p class="hero-sub">Twenty years shipping production software. Two years rebuilding our own business around AI. That transformation is what we now run for our customers.</p>
+    <div class="hero-actions">
+      <a href="#review" class="btn-primary">Start with a readiness review →</a>
+      <a href="#pillars" class="btn-secondary">See how we work</a>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div id="trust">
+  <div style="overflow:hidden">
+    <div class="trust-scroll">
+      <img src="https://jawad216.github.io/WLredesign/logo1.webp" alt="Nidec">
+      <img src="https://jawad216.github.io/WLredesign/logo2.webp" alt="CareDocs">
+      <img src="https://jawad216.github.io/WLredesign/logo3.webp" alt="Parcel Force">
+      <img src="https://jawad216.github.io/WLredesign/logo4.webp" alt="Environment Agency">
+      <img src="https://jawad216.github.io/WLredesign/logo%205.webp" alt="University of Chester">
+      <img src="https://jawad216.github.io/WLredesign/logo%206.webp" alt="Software Circle">
+      <img src="https://jawad216.github.io/WLredesign/logo1.webp" alt="Nidec">
+      <img src="https://jawad216.github.io/WLredesign/logo2.webp" alt="CareDocs">
+      <img src="https://jawad216.github.io/WLredesign/logo3.webp" alt="Parcel Force">
+      <img src="https://jawad216.github.io/WLredesign/logo4.webp" alt="Environment Agency">
+      <img src="https://jawad216.github.io/WLredesign/logo%205.webp" alt="University of Chester">
+      <img src="https://jawad216.github.io/WLredesign/logo%206.webp" alt="Software Circle">
+    </div>
+  </div>
+</div>
+
+<!-- THESIS -->
+<section id="thesis">
+  <div class="container">
+    <span class="eyebrow">The thesis</span>
+    <h2>Most AI projects fail because the organisation <em>isn't ready</em> — not because the model isn't.</h2>
+    <p>We know. We went through it ourselves.</p>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<section id="pillars">
+  <div class="container">
+    <span class="eyebrow">How we engage</span>
+    <h2>Three pillars. <em>One direction of travel.</em></h2>
+    <div class="pillars-grid">
+      <div class="pillar">
+        <span class="pillar-num">01 — Primary</span>
+        <h3>Transformation</h3>
+        <p class="pillar-desc">Where most engagements start. We assess where you are, upskill your people, and install new ways of working.</p>
+        <div class="pillar-meta">
+          <span>CEO · CTO · Head of Transformation</span>
+          <span class="pillar-price">£50k–£250k</span>
+          <a href="#" class="pillar-link">Learn more →</a>
+        </div>
+      </div>
+      <div class="pillar">
+        <span class="pillar-num">02 — Delivery</span>
+        <h3>Agents</h3>
+        <p class="pillar-desc">Custom AI agents and AI-native software built on our orchestration platform. Production-grade from day one.</p>
+        <div class="pillar-meta">
+          <span>VP Eng · Product · Ops</span>
+          <span class="pillar-price">£100k–£500k+</span>
+          <a href="#agents" class="pillar-link">Learn more →</a>
+        </div>
+      </div>
+      <div class="pillar">
+        <span class="pillar-num">03 — Strategy</span>
+        <h3>Moats</h3>
+        <p class="pillar-desc">Most AI features will commoditise within 18 months. We help you invest in the ones that won't.</p>
+        <div class="pillar-meta">
+          <span>CEO · Founder · Investor</span>
+          <span class="pillar-price">£30k–£100k</span>
+          <a href="#" class="pillar-link">Learn more →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AGENTS -->
+<section id="agents" style="border-bottom:none">
+  <div class="container">
+    <span class="eyebrow">02 — Agents &amp; AI-native software</span>
+    <h2>Agents that do <em>real work</em> inside your stack.</h2>
+    <div class="agents-features">
+      <div class="agent-feature">
+        <h4>Integrated, not bolted on</h4>
+        <p>Live inside your CRM, ERP, or custom apps — not in a separate portal nobody visits.</p>
+      </div>
+      <div class="agent-feature">
+        <h4>Observability from the start</h4>
+        <p>Cost ceilings, audit trails, drift monitoring, and model-switch readiness built in.</p>
+      </div>
+      <div class="agent-feature">
+        <h4>Production-grade by default</h4>
+        <p>We extend infrastructure we run daily — not assemble it bespoke.</p>
+      </div>
+      <div class="agent-feature">
+        <h4>Your team inherits it</h4>
+        <p>We don't leave you dependent on us. Your engineers learn to operate, tune, and extend what we ship.</p>
+      </div>
+    </div>
+    <div class="wolfpack-card">
+      <div>
+        <span style="font-size:11px;font-weight:500;letter-spacing:0.1em;color:rgba(255,255,255,0.4);text-transform:uppercase;display:block;margin-bottom:12px;">Wolfpack platform · In production</span>
+        <div class="wolfpack-tags">
+          <span class="tag">agent-scaffolding</span>
+          <span class="tag">evaluation-harness</span>
+          <span class="tag">review-pipeline</span>
+          <span class="tag">deploy-rollback</span>
+          <span class="tag">observability</span>
+          <span class="tag">cost-ceilings</span>
+          <span class="tag">model-switch-ready</span>
+        </div>
+      </div>
+      <div class="wolfpack-pricing">
+        <div class="price-block">
+          <span class="price-label">Build</span>
+          <span class="price-val">4–12wk</span>
+        </div>
+        <div class="price-block">
+          <span class="price-label">From</span>
+          <span class="price-val">£100k+</span>
+        </div>
+        <div class="price-block">
+          <span class="price-label">Hosting</span>
+          <span class="price-val">£200/mo</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEW -->
+<section id="review">
+  <div class="container">
+    <span class="eyebrow">The entry point</span>
+    <h2>A readiness review. Two weeks. <em>Fixed fee.</em></h2>
+    <p>We look at your data, your systems, and your team — and give you a clear-eyed view of what AI can do for you, and what it can't.</p>
+    <div class="review-stats">
+      <div class="stat">
+        <div class="stat-val">2 wks</div>
+        <div class="stat-label">Fixed timeline</div>
+      </div>
+      <div class="stat">
+        <div class="stat-val">£12,500</div>
+        <div class="stat-label">Fixed price</div>
+      </div>
+      <div class="stat">
+        <div class="stat-val">~6 hrs</div>
+        <div class="stat-label">Your time</div>
+      </div>
+      <div class="stat">
+        <div class="stat-val">80%</div>
+        <div class="stat-label">Into pillar within 90 days</div>
+      </div>
+    </div>
+    <a href="#cta" class="btn-primary">Book a readiness review →</a>
+  </div>
+</section>
+
+<!-- HOW WE WORK -->
+<section id="how">
+  <div class="container">
+    <span class="eyebrow">How an engagement runs</span>
+    <h2>From "we should do something with AI" <em>to production.</em></h2>
+    <div class="phases">
+      <div class="phase">
+        <div class="phase-num">Phase 01</div>
+        <h3>Review</h3>
+        <p>We audit your data, systems, and team. You leave with build-ready specifications.</p>
+        <div class="phase-meta">2 weeks · £12,500 fixed</div>
+      </div>
+      <div class="phase">
+        <div class="phase-num">Phase 02</div>
+        <h3>Build</h3>
+        <p>We design the agents, write the evaluation suites, build the guardrails, and integrate with your platform.</p>
+        <div class="phase-meta">8–16 weeks · Scoped from review</div>
+      </div>
+      <div class="phase">
+        <div class="phase-num">Phase 03</div>
+        <h3>Deploy</h3>
+        <p>We ship into production. Runbooks and handover sessions so your team can own it from day one.</p>
+        <div class="phase-meta">2–4 weeks</div>
+      </div>
+      <div class="phase">
+        <div class="phase-num">Phase 04</div>
+        <h3>Operate</h3>
+        <p>Optional retainer to monitor performance, manage drift, and swap models. Or your team takes it over.</p>
+        <div class="phase-meta">Monthly · From £2,500</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASES -->
+<section id="cases">
+  <div class="container">
+    <h2><em>Shipped.</em> Measured. Trusted. <a href="#">View all work →</a></h2>
+    <div class="cases-grid">
+      <a href="#" class="case">
+        <div class="case-client">Nidec · Manufacturing</div>
+        <h3>Porting a 1990s motor control platform <em>into the 2020s</em></h3>
+        <div class="case-tags">
+          <span class="case-tag">Legacy modernisation</span>
+          <span class="case-tag">Zero downtime</span>
+        </div>
+      </a>
+      <a href="#" class="case">
+        <div class="case-client">Meraki Halo · Commercial</div>
+        <h3>AI-native CRM and commission platform <em>built on Wolfpack</em></h3>
+        <div class="case-tags">
+          <span class="case-tag">AI Agents</span>
+          <span class="case-tag">ERP integration</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- LIMITS -->
+<section id="limits">
+  <div class="container">
+    <span class="eyebrow">What we won't do</span>
+    <h2>What we're <em>not.</em></h2>
+    <div class="limits-grid">
+      <div class="limit-item">
+        <span class="limit-x">✕</span>
+        <strong>AI strategy decks for your board</strong>
+      </div>
+      <div class="limit-item">
+        <span class="limit-x">✕</span>
+        <strong>Customer-facing chatbots without guardrails</strong>
+      </div>
+      <div class="limit-item">
+        <span class="limit-x">✕</span>
+        <strong>Autonomous agents with no human in the loop</strong>
+      </div>
+      <div class="limit-item">
+        <span class="limit-x">✕</span>
+        <strong>Replacement-grade AI for safety-critical decisions</strong>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="container">
+    <span class="eyebrow">Ready to start</span>
+    <h2>If you're ready to start — <em>let's talk.</em></h2>
+    <p>Thirty minutes. No slides, no pitch — just a conversation about what you need and whether we're the right team.</p>
+    <div class="hero-actions">
+      <a href="#" class="btn-primary">Book a 30-minute conversation →</a>
+      <a href="#review" class="btn-secondary">Or start with a readiness review</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <strong>Wolf Logic</strong>
+        AI transformation partner · Shrewsbury, UK
+      </div>
+      <ul class="footer-links">
+        <li><a href="#">Transformation</a></li>
+        <li><a href="#">Agents</a></li>
+        <li><a href="#">Moats</a></li>
+        <li><a href="#">Work</a></li>
+        <li><a href="#">Privacy</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
