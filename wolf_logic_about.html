@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Wolf Logic</title>
+<meta name="description" content="Twenty years shipping software. Two years rebuilding around AI. We are the pack.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #faf8f4;
+    --ink: #1a1916;
+    --ink-2: #4a4844;
+    --ink-3: #8a8780;
+    --blue: #2d5be3;
+    --blue-light: #e8eefb;
+    --rule: #e2dfd8;
+    --serif: 'Fraunces', Georgia, serif;
+    --sans: 'Instrument Sans', sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+  nav { position: sticky; top: 0; z-index: 100; background: var(--bg); border-bottom: 1px solid var(--rule); padding: 0 48px; height: 60px; display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo { font-family: var(--serif); font-size: 18px; font-weight: 500; color: var(--ink); text-decoration: none; letter-spacing: -0.02em; }
+  .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+  .nav-links a { font-size: 13px; color: var(--ink-2); text-decoration: none; transition: color 0.15s; }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-cta { font-size: 13px !important; font-weight: 500; color: var(--bg) !important; background: var(--ink); padding: 8px 18px; border-radius: 4px; text-decoration: none !important; transition: background 0.15s; }
+  .nav-cta:hover { background: var(--blue) !important; }
+
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 48px; }
+  section { padding: 96px 0; border-bottom: 1px solid var(--rule); }
+
+  .eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 24px; display: block; }
+
+  /* HERO */
+  #hero { padding: 120px 0 96px; border-bottom: 1px solid var(--rule); }
+  #hero h1 { font-family: var(--serif); font-size: clamp(40px, 6vw, 72px); font-weight: 300; line-height: 1.1; letter-spacing: -0.03em; max-width: 860px; margin-bottom: 32px; }
+  #hero h1 em { font-style: italic; color: var(--blue); }
+  #hero .hero-sub { font-size: 18px; color: var(--ink-2); max-width: 560px; line-height: 1.6; }
+
+  /* STATS */
+  .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+  #stats { padding: 0; border-bottom: 1px solid var(--rule); }
+  .stat { background: var(--bg); padding: 40px 36px; }
+  .stat-val { font-family: var(--serif); font-size: 48px; font-weight: 300; letter-spacing: -0.03em; line-height: 1; margin-bottom: 8px; }
+  .stat-label { font-size: 13px; color: var(--ink-3); }
+
+  /* STORY */
+  #story { display: grid; grid-template-columns: 1fr 1fr; gap: 96px; align-items: start; }
+  .story-heading { position: sticky; top: 80px; }
+  .story-heading h2 { font-family: var(--serif); font-size: clamp(28px, 3.5vw, 46px); font-weight: 300; letter-spacing: -0.02em; line-height: 1.2; }
+  .story-heading h2 em { font-style: italic; }
+  .story-body p { font-size: 16px; color: var(--ink-2); line-height: 1.75; margin-bottom: 24px; }
+  .story-body p:last-child { margin-bottom: 0; }
+  .story-callout { border-left: 2px solid var(--blue); padding: 16px 24px; margin: 32px 0; }
+  .story-callout p { font-family: var(--serif); font-size: 20px; font-weight: 300; font-style: italic; color: var(--ink); margin-bottom: 0; line-height: 1.4; }
+
+  /* SECTORS */
+  #sectors h2 { font-family: var(--serif); font-size: clamp(24px, 3vw, 40px); font-weight: 300; letter-spacing: -0.02em; margin-bottom: 48px; }
+  #sectors h2 em { font-style: italic; }
+  .sectors-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+  .sector { background: var(--bg); padding: 32px 28px; }
+  .sector h4 { font-size: 14px; font-weight: 500; margin-bottom: 6px; }
+  .sector p { font-size: 13px; color: var(--ink-3); line-height: 1.5; }
+
+  /* TEAM */
+  #team h2 { font-family: var(--serif); font-size: clamp(24px, 3vw, 40px); font-weight: 300; letter-spacing: -0.02em; margin-bottom: 16px; }
+  #team h2 em { font-style: italic; }
+  #team > .container > .team-intro { font-size: 16px; color: var(--ink-2); max-width: 620px; margin-bottom: 64px; line-height: 1.7; }
+  .team-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-bottom: 1px; }
+  .team-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-top: none; }
+  .team-member { background: var(--bg); padding: 44px 40px; }
+  .member-initial { width: 48px; height: 48px; border-radius: 50%; background: var(--ink); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 18px; font-weight: 300; color: var(--bg); margin-bottom: 20px; flex-shrink: 0; }
+  .member-name { font-family: var(--serif); font-size: 22px; font-weight: 400; letter-spacing: -0.01em; margin-bottom: 4px; }
+  .member-role { font-size: 11px; color: var(--ink-3); font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 20px; display: block; }
+  .member-bio { font-size: 14px; color: var(--ink-2); line-height: 1.7; }
+
+  /* CLOSING */
+  #closing { background: var(--ink); color: var(--bg); border-bottom: none; }
+  #closing .eyebrow { color: rgba(255,255,255,0.4); }
+  #closing h2 { font-family: var(--serif); font-size: clamp(28px, 4vw, 52px); font-weight: 300; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 24px; max-width: 700px; }
+  #closing h2 em { font-style: italic; color: #7da4f5; }
+  #closing p { font-size: 16px; color: rgba(255,255,255,0.55); max-width: 520px; margin-bottom: 40px; line-height: 1.7; }
+  .btn-white { font-size: 14px; font-weight: 500; color: var(--ink); background: var(--bg); padding: 12px 24px; border-radius: 4px; text-decoration: none; display: inline-block; transition: opacity 0.15s; margin-right: 16px; }
+  .btn-white:hover { opacity: 0.85; }
+  .btn-outline-white { font-size: 14px; color: rgba(255,255,255,0.7); border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 2px; text-decoration: none; }
+  .btn-outline-white:hover { color: #fff; border-color: #fff; }
+
+  footer { border-top: 1px solid var(--rule); padding: 40px 0; }
+  .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; }
+  .footer-left { font-size: 13px; color: var(--ink-3); }
+  .footer-left strong { font-family: var(--serif); font-weight: 500; color: var(--ink); font-size: 15px; display: block; margin-bottom: 4px; }
+  .footer-links { display: flex; gap: 24px; list-style: none; }
+  .footer-links a { font-size: 13px; color: var(--ink-3); text-decoration: none; }
+  .footer-links a:hover { color: var(--ink); }
+
+  @media (max-width: 900px) {
+    nav { padding: 0 24px; }
+    .container { padding: 0 24px; }
+    section { padding: 64px 0; }
+    #story { grid-template-columns: 1fr; gap: 40px; }
+    .story-heading { position: static; }
+    .stats-row, .sectors-grid { grid-template-columns: repeat(2, 1fr); }
+    .team-grid, .team-grid-3 { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="wolf_logic_homepage_lean.html" class="nav-logo">Wolf Logic</a>
+  <ul class="nav-links">
+    <li><a href="wolf_logic_homepage_lean.html">Home</a></li>
+    <li><a href="wolf_logic_agents_lean.html">AI Agents</a></li>
+    <li><a href="wolf_logic_moats_lean.html">Moats</a></li>
+    <li><a href="#">Case studies</a></li>
+    <li><a href="#" class="nav-cta">Book a call</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="container">
+    <span class="eyebrow">About Wolf Logic</span>
+    <h1>We don't follow the pack.<br><em>We are the pack.</em></h1>
+    <p class="hero-sub">Founded over two decades ago with a single conviction: client organisations deserve technology partners who combine genuine technical depth with an instinct for what works in the real world.</p>
+  </div>
+</section>
+
+<!-- STATS -->
+<div id="stats">
+  <div class="container" style="padding:0">
+    <div class="stats-row">
+      <div class="stat">
+        <div class="stat-val">20+</div>
+        <div class="stat-label">Years shipping software</div>
+      </div>
+      <div class="stat">
+        <div class="stat-val">200+</div>
+        <div class="stat-label">Projects delivered</div>
+      </div>
+      <div class="stat">
+        <div class="stat-val">5</div>
+        <div class="stat-label">Sectors served</div>
+      </div>
+      <div class="stat">
+        <div class="stat-val">100%</div>
+        <div class="stat-label">Client recommendation rate</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STORY -->
+<section>
+  <div class="container">
+    <div id="story">
+      <div class="story-heading">
+        <span class="eyebrow">Our story</span>
+        <h2>From bespoke software to <em>the frontier of AI.</em></h2>
+      </div>
+      <div class="story-body">
+        <p>Wolf Logic was founded over two decades ago with a single, clear conviction: client organisations deserve technology partners who combine genuine technical depth with an instinct for what works in the real world.</p>
+        <p>We began as a tight-knit team of developers — sharp, driven, and hungry to solve hard problems. That spirit hasn't changed. What has changed is the landscape we navigate, and our team has grown stronger for it.</p>
+        <p>From those early days of bespoke software development, we've evolved through every major technological shift — from client-server architecture to the cloud, from digital transformation to the frontier of AI Agentic solutions. At each turn, Wolf Logic has been out ahead, charting the terrain so our clients don't have to face it blind.</p>
+        <div class="story-callout">
+          <p>Our team has delivered over 200 projects. Over 20 years. Every one of them a marker on a longer journey.</p>
+        </div>
+        <p>Across the public and private sectors — healthcare, manufacturing, financial services, government, environmental — we've guided organisations through change that felt daunting and delivered outcomes that endured.</p>
+        <p>Today, we stand at the most exciting frontier yet. AI Agentic solutions are reshaping how organisations think, decide, and operate — and Wolf Logic is already deep in that territory, building what others are still reading about.</p>
+        <p>The new frontier is wide open. We're off and running.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTORS -->
+<section id="sectors">
+  <div class="container">
+    <span class="eyebrow">Where we work</span>
+    <h2>Trusted across <em>five sectors.</em></h2>
+    <div class="sectors-grid">
+      <div class="sector">
+        <h4>Healthcare</h4>
+        <p>NHS-connected platforms, care management systems, compliance infrastructure</p>
+      </div>
+      <div class="sector">
+        <h4>Manufacturing</h4>
+        <p>Industrial control systems, legacy modernisation, factory floor tooling</p>
+      </div>
+      <div class="sector">
+        <h4>Financial services</h4>
+        <p>Commission platforms, payment infrastructure, regulated workflow automation</p>
+      </div>
+      <div class="sector">
+        <h4>Government &amp; public sector</h4>
+        <p>Environmental monitoring, geospatial platforms, DEFRA-funded research</p>
+      </div>
+      <div class="sector">
+        <h4>Environmental</h4>
+        <p>Flood risk intelligence, water quality monitoring, IoT sensor platforms</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="container">
+    <span class="eyebrow">Meet the pack leaders</span>
+    <h2>Leadership that's <em>in the work.</em></h2>
+    <p class="team-intro">At Wolf Logic, leadership doesn't mean reviewing status reports from a distance. It means being in the code, on the client calls, and personally invested in solving your toughest challenges. Our team has worked together for years, combining decades of collective experience across software architecture, AI strategy, enterprise systems, and agile delivery.</p>
+
+    <!-- Top row: 2 co-founders -->
+    <div class="team-grid">
+      <div class="team-member">
+        <div class="member-initial">VA</div>
+        <div class="member-name">Vadim Adams</div>
+        <span class="member-role">Co-Founder &amp; CEO</span>
+        <p class="member-bio">Vadim leads Wolf Logic with over 15 years of expertise in software architecture and AI strategy. His vision has guided the company from traditional development into cutting-edge AI innovation, while maintaining the technical rigour that makes Wolf Logic a trusted advisor across multiple sectors.</p>
+      </div>
+      <div class="team-member">
+        <div class="member-initial">JP</div>
+        <div class="member-name">Sun Phil (JP) Yoon</div>
+        <span class="member-role">Co-Director</span>
+        <p class="member-bio">JP drives strategic business development and client relationships, bridging technical capabilities with business objectives to ensure solutions deliver genuine commercial value. His leadership has expanded Wolf Logic's presence across multiple sectors and built long-term client partnerships.</p>
+      </div>
+    </div>
+
+    <!-- Bottom row: 3 directors -->
+    <div class="team-grid-3">
+      <div class="team-member">
+        <div class="member-initial">SR</div>
+        <div class="member-name">Steve Robertson</div>
+        <span class="member-role">Chief Technical Officer</span>
+        <p class="member-bio">Steve brings deep expertise in enterprise solutions and cloud architecture, ensuring every project leverages the right technology stack for scalability, security, and performance. His technical leadership has been instrumental in modernising complex legacy systems and deploying mission-critical platforms.</p>
+      </div>
+      <div class="team-member">
+        <div class="member-initial">TD</div>
+        <div class="member-name">Tiep Duong Man</div>
+        <span class="member-role">Delivery Director</span>
+        <p class="member-bio">Tiep leads project delivery with expertise in agile methodologies and team coordination. His hands-on approach ensures projects stay on track, risks are managed proactively, and deliverables consistently meet Wolf Logic's exacting standards.</p>
+      </div>
+      <div class="team-member">
+        <div class="member-initial">PH</div>
+        <div class="member-name">Peter Hayes</div>
+        <span class="member-role">Associate Director</span>
+        <p class="member-bio">Peter specialises in operations and project excellence, ensuring consistent delivery standards across all engagements. His focus on quality assurance and client satisfaction has been crucial to achieving Wolf Logic's 100% client recommendation rate.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section id="closing">
+  <div class="container">
+    <span class="eyebrow">The new frontier</span>
+    <h2>Moving with purpose, instinct, and <em>hard-won experience.</em></h2>
+    <p>We know which ground is worth covering and which battles are worth fighting. If you're ready to work with a team that's already operating at the frontier — let's talk.</p>
+    <a href="#" class="btn-white">Book a conversation →</a>
+    <a href="wolf_logic_homepage_lean.html" class="btn-outline-white">See our work</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <strong>Wolf Logic</strong>
+        AI transformation partner · Shrewsbury, UK
+      </div>
+      <ul class="footer-links">
+        <li><a href="wolf_logic_homepage_lean.html">Home</a></li>
+        <li><a href="wolf_logic_agents_lean.html">AI Agents</a></li>
+        <li><a href="wolf_logic_moats_lean.html">Moats</a></li>
+        <li><a href="#">Case studies</a></li>
+        <li><a href="#">Privacy</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
